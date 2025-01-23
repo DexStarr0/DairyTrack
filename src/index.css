@@ -1,0 +1,193 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+body,
+input,
+textarea {
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  position: relative;
+  background-color: #fff;
+  /* min-height: 100vh; */
+  /* height: 100vh; */
+  /* max-height: 100vh; */
+  overflow: hidden;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0rem 1rem;
+  transition: all 0.2s 0.7s;
+  overflow: hidden;
+}
+
+.title {
+  margin-bottom: 10px;
+  display: block;
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: #333333;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.input-field {
+  position: relative;
+  max-width: 380px;
+  width: 100%;
+  height: 50px;
+  margin: 10px 0;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 0 0.4rem;
+  border-radius: 25px;
+  background: #e6e6e6;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666666;
+}
+
+.input-field i {
+  text-align: center;
+  line-height: 50px;
+  color: #acacac;
+  transition: 0.5s;
+  font-size: 1rem;
+}
+
+.input-field input {
+  background: none;
+  outline: none;
+  border: none;
+  line-height: 1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  overflow: scroll;
+  color: #333;
+  width: 100%;
+  padding: 15px 0;
+}
+
+/* to avoid :increment and :decrement option in input of number type */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.btn {
+  width: 150px;
+  /* background-color: #5995fd; */
+  border: none;
+  outline: none;
+  height: 49px;
+  border-radius: 49px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.5s;
+}
+/* green btn */
+.form-btn {
+  min-width: 193px;
+  height: 50px;
+  border-radius: 25px;
+  background: #57b846;
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.form-btn i {
+  margin-left: 7px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.form-btn:hover {
+  background: #4caf50;
+  color: white;
+}
+
+.form-btn:hover i {
+  -webkit-transform: translateX(10px);
+  -moz-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  -o-transform: translateX(10px);
+  transform: translateX(10px);
+}
+
+@media (max-width: 870px) {
+  .container {
+    min-height: 800px;
+    height: 100vh;
+  }
+}
+/* Container to center the list */
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0; /* Optional: Light background */
+}
+
+/* Style for the unordered list */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 95%;
+}
+
+/* Style for each list item */
+li {
+  list-style-type: none;
+  padding: 10px;
+  margin: 5px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+li strong {
+  color: #555;
+  font-weight: bold;
+}
+
+li br {
+  display: block;
+  margin-top: 5px;
+}
