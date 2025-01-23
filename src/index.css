@@ -9,10 +9,9 @@ textarea {
 .container {
   position: relative;
   background-color: #fff;
-  /* min-height: 100vh; */
-  /* height: 100vh; */
-  /* max-height: 100vh; */
-  overflow: hidden;
+  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
 }
 
 .form {
@@ -161,33 +160,74 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: #f0f0f0; /* Optional: Light background */
 }
 
-/* Style for the unordered list */
+/* General style for the unordered list */
+/* General style for the unordered list */
 ul {
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin: 20px auto;
   width: 95%;
+  max-width: 700px;
+  font-family: "Roboto", sans-serif; /* Clean and modern font */
 }
 
 /* Style for each list item */
 li {
-  list-style-type: none;
-  padding: 10px;
-  margin: 5px;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-family: "Arial", sans-serif;
+  background: linear-gradient(
+    135deg,
+    #e9f5f5,
+    #ffffff
+  ); /* Soft pastel gradient */
+  border: 1px solid #d4e9e2; /* Subtle minty border */
+  border-radius: 12px;
+  padding: 15px 25px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Light shadow for depth */
   font-size: 16px;
-  color: #333;
+  color: #2b3a3a; /* Deep gray-green for text */
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+li:hover {
+  transform: scale(1.03); /* Slight zoom on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12); /* Slightly stronger shadow on hover */
+}
+
+/* Decorative bar on the left for emphasis */
+li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #9fd5d1,
+    #75c4b3
+  ); /* Calm green gradient */
+  border-radius: 12px 0 0 12px;
+}
+
+/* Style for strong elements */
 li strong {
-  color: #555;
-  font-weight: bold;
+  color: #4a6f6f; /* Muted teal for titles */
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 5px;
 }
 
+/* Add spacing between key-value pairs */
 li br {
   display: block;
-  margin-top: 5px;
+  margin: 10px 0;
+}
+
+/* Value styling */
+li span {
+  display: inline-block;
+  margin-top: 2px;
+  color: #527878; /* Softer green-gray for values */
 }
