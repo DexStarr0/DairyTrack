@@ -5,20 +5,27 @@ import { database } from "./firebase-config"; // Import your Firebase configurat
 const App = () => {
   // State for user inputs
   const dataCollName = "Dairy";
-  const [input1, setInput1] = useState();
-  const [input2, setInput2] = useState();
+  const [input1, setInput1] = useState("");
+  const [input2, setInput2] = useState("");
   const [input3, setInput3] = useState("");
   const [validationKey, setvalidationKey] = useState("");
   const [data, setData] = useState([]); // To store fetched data
   // const currentDate = new Date().toISOString().split("T")[0]; // "YYYY-MM-DD"
+
   const generateRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  const currentDate = `2025-01-${String(generateRandomNumber(1, 30)).padStart(
-    2,
-    "0"
-  )}`;
+  // const currentDate = `2025-01-${String(generateRandomNumber(1, 30)).padStart(
+  //   2,
+  //   "0"
+  // )}`;
+  // Conditionally set the current date based on dataCollName
+  const currentDate =
+    dataCollName === "Dairy"
+      ? new Date().toISOString().split("T")[0] // "YYYY-MM-DD"
+      : `2025-01-${String(generateRandomNumber(1, 30)).padStart(2, "0")}`;
+
   // Function to write data to Realtime Database
   const fetchValkey = useCallback(() => {
     const dairyRef = ref(database, "validation");
@@ -142,7 +149,7 @@ const App = () => {
             {data.map((item) => (
               <li key={item.date}>
                 <strong>Date:</strong> {item.date} -:-<strong> Total:</strong>{" "}
-                {item.Evening + item.Morning} L
+                {Number(item.Evening) + Number(item.Morning)} L
                 <br />
                 <strong>Morning:</strong> {item.Morning} L -:-{" "}
                 <strong>Evening:</strong> {item.Evening} L
