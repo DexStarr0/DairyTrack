@@ -146,15 +146,18 @@ const App = () => {
           </button>
           <h2 className="title">Milk Records</h2>
           <ul>
-            {data.map((item) => (
-              <li key={item.date}>
-                <strong>Date:</strong> {item.date} -:-<strong> Total:</strong>{" "}
-                {Number(item.Evening) + Number(item.Morning)} L
-                <br />
-                <strong>Morning:</strong> {item.Morning} L -:-{" "}
-                <strong>Evening:</strong> {item.Evening} L
-              </li>
-            ))}
+            {data
+              .slice()
+              .reverse()
+              .map((item) => (
+                <li key={item.date}>
+                  <strong>Date:</strong> {item.date} -:-<strong> Total:</strong>{" "}
+                  {Number(item.Evening) + Number(item.Morning)} L
+                  <br />
+                  <strong>Morning:</strong> {item.Morning} L -:-{" "}
+                  <strong>Evening:</strong> {item.Evening} L
+                </li>
+              ))}
           </ul>
         </div>
       </div>
