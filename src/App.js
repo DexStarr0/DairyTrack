@@ -10,22 +10,42 @@ const App = () => {
   const [input3, setInput3] = useState("");
   const [validationKey, setvalidationKey] = useState("");
   const [data, setData] = useState([]); // To store fetched data
-  // const currentDate = new Date().toISOString().split("T")[0]; // "YYYY-MM-DD"
 
   const generateRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
+  // List of month names
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  // Get the current date
+  const CurrDate = new Date();
 
-  // const currentDate = `2025-01-${String(generateRandomNumber(1, 30)).padStart(
-  //   2,
-  //   "0"
-  // )}`;
-  // Conditionally set the current date based on dataCollName
-  const currentDate =
+  // Extract year, month, and day
+  const year = CurrDate.getFullYear();
+  const month = monthNames[CurrDate.getMonth()]; // Months are 0-based, so adding 1
+  const day = String(CurrDate.getDate()).padStart(2, "0");
+
+  const today =
     dataCollName === "Dairy"
-      ? new Date().toISOString().split("T")[0] // "YYYY-MM-DD"
-      : `2025-01-${String(generateRandomNumber(1, 30)).padStart(2, "0")}`;
+      ? day
+      : `${String(generateRandomNumber(1, 30)).padStart(2, "0")}`;
 
+  // Format the date as "YYYY-MM-DD"
+  const currentDate = `${today}-${month}-${year}`;
+  const dataWriteDir = `${dataCollName}/${year}/${month}/${today}`;
+  const datafetchDir = `${dataCollName}/${year}/${month}`;
   // Function to write data to Realtime Database
   const fetchValkey = useCallback(() => {
     const dairyRef = ref(database, "validation");
@@ -42,16 +62,18 @@ const App = () => {
   }, []);
 
   const fetchData = useCallback(() => {
-    const dairyRef = ref(database, dataCollName);
+    const dairyRef = ref(database, datafetchDir);
 
     const unsubscribe = onValue(dairyRef, (snapshot) => {
       if (snapshot.exists()) {
+        console.log(snapshot.val());
         const fetchedData = Object.entries(snapshot.val()).map(
           ([date, records]) => ({
             date,
             ...records,
           })
         );
+
         setData(fetchedData);
       } else {
         setData([]);
@@ -59,7 +81,7 @@ const App = () => {
     });
 
     return () => unsubscribe(); // Clean up listener
-  }, []);
+  }, [datafetchDir]);
 
   useEffect(() => {
     fetchValkey();
@@ -75,7 +97,7 @@ const App = () => {
       return;
     }
 
-    const dateRef = ref(database, `${dataCollName}/${currentDate}`);
+    const dateRef = ref(database, dataWriteDir);
 
     get(dateRef)
       .then((snapshot) => {
@@ -90,6 +112,7 @@ const App = () => {
               alert("Data added successfully!");
               setInput1("");
               setInput2("");
+              setInput3("");
             })
             .catch((error) => {
               console.error("Error writing data: ", error);
@@ -106,7 +129,7 @@ const App = () => {
       {/* {/* //sdfpj  */}
       <div className="container">
         <div className="form">
-          <h2 className="title">Daily Milk Track</h2>
+          <h2 className="title">Daily Dairy Tracker</h2>
           <div>
             <strong>Date:</strong> {currentDate} <br />
           </div>
@@ -132,7 +155,7 @@ const App = () => {
           <div className="input-field">
             <i className="bi bi-shield-lock-fill"></i>
             <input
-              type="text"
+              type="password"
               value={input3}
               placeholder="PassKey"
               onChange={(e) => setInput3(e.target.value)}
@@ -144,14 +167,15 @@ const App = () => {
               <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
             </span>
           </button>
-          <h2 className="title">Milk Records</h2>
+          <h2 className="title">Records -:- {month}</h2>
           <ul>
             {data
               .slice()
               .reverse()
               .map((item) => (
                 <li key={item.date}>
-                  <strong>Date:</strong> {item.date} -:-<strong> Total:</strong>{" "}
+                  <strong>Date:-</strong>
+                  {item.date}-{month} -:-<strong> Total:</strong>{" "}
                   {Number(item.Evening) + Number(item.Morning)} L
                   <br />
                   <strong>Morning:</strong> {item.Morning} L -:-{" "}
