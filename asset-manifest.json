@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/DairyTrack/static/css/main.54a25ac3.css",
+    "main.js": "/DairyTrack/static/js/main.d3fff079.js",
+    "index.html": "/DairyTrack/index.html",
+    "main.54a25ac3.css.map": "/DairyTrack/static/css/main.54a25ac3.css.map",
+    "main.d3fff079.js.map": "/DairyTrack/static/js/main.d3fff079.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.54a25ac3.css",
+    "static/js/main.d3fff079.js"
+  ]
+}
