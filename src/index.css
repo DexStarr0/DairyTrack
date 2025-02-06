@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+body {
+  height: 100vh;
+  width: 100vw;
+  min-height: 100vh;
+  min-width: 100vw;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  text-align: center;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+}
+input,
+textarea {
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  position: relative;
+  background-color: #fff;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0rem 1rem;
+  transition: all 0.2s 0.7s;
+  overflow: hidden;
+}
+
+.input-field {
+  position: relative;
+  max-width: 380px;
+  width: 100%;
+  height: 50px;
+  margin: 10px 0;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 0 0.4rem;
+  border-radius: 25px;
+  background: #e6e6e6;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666666;
+}
+
+.input-field i {
+  text-align: center;
+  line-height: 50px;
+  color: #acacac;
+  transition: 0.5s;
+  font-size: 1rem;
+}
+
+.input-field input {
+  background: none;
+  outline: none;
+  border: none;
+  line-height: 1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  overflow: scroll;
+  color: #333;
+  width: 100%;
+  padding: 15px 0;
+}
+
+/* to avoid :increment and :decrement option in input of number type */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@media (max-width: 870px) {
+  .container {
+    min-height: 800px;
+    height: 100vh;
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px auto;
+  width: 95%;
+  max-width: 700px;
+  font-family: "Roboto", sans-serif; /* Clean and modern font */
+}
+
+/* Style for each list item */
+li {
+  background: linear-gradient(
+    135deg,
+    #e9f5f5,
+    #ffffff
+  ); /* Soft pastel gradient */
+  border: 1px solid #d4e9e2; /* Subtle minty border */
+  border-radius: 12px;
+  padding: 15px 25px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Light shadow for depth */
+  font-size: 16px;
+  color: #2b3a3a; /* Deep gray-green for text */
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+li:hover {
+  transform: scale(1.03); /* Slight zoom on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12); /* Slightly stronger shadow on hover */
+}
+
+/* Decorative bar on the left for emphasis */
+li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #9fd5d1,
+    #75c4b3
+  ); /* Calm green gradient */
+  border-radius: 12px 0 0 12px;
+}
+
+/* Style for strong elements */
+li strong {
+  color: #4a6f6f; /* Muted teal for titles */
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+/* Add spacing between key-value pairs */
+li br {
+  display: block;
+  margin: 10px 0;
+}
+
+/* Value styling */
+li span {
+  display: inline-block;
+  margin-top: 2px;
+  color: #527878; /* Softer green-gray for values */
+}
+
+.records {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  padding: 5px 15px;
+  gap: 10px;
+}
+
+.records span {
+  display: inline-block;
+}
+
+.records select {
+  background-color: inherit;
+  font: inherit;
+  appearance: none;
+  padding: 6px 0;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.records select:focus {
+  outline: none;
+  border-color: #007acc;
+}
+
+.records select:hover {
+  background-color: #f0f0f0;
+}
+
+.records option {
+  text-align: center;
+  padding: 8px;
+  background-color: white;
+}
