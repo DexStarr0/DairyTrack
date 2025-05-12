@@ -105,7 +105,7 @@ const App = () => {
         if (authState === AuthStatus.PRIME) {
           toast.success("Hello Boss 😎");
         } else if (authState === AuthStatus.NON_PRIME) {
-          toast.success("Hello Sonu 🤠");
+          toast.success("Hello family 💖");
         } else {
           toast.error("पासवर्ड गलत है।");
         }
