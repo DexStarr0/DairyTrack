@@ -73,7 +73,9 @@ const App = () => {
   // Calculate total milk production for the selected month
   const totalMilkProduction = useMemo(() => {
     return data.reduce((total, item) => {
-      return total + Number(item.Morning) + Number(item.Evening);
+      const morning = Number(item.Morning ?? 0);
+      const evening = Number(item.Evening ?? 0);
+      return total + morning + evening;
     }, 0);
   }, [data]);
 
@@ -154,35 +156,54 @@ const App = () => {
     setIsSubmitting(true);
 
     try {
-      if (!formState.Morning || !formState.Evening) {
-        throw new Error("दोनों फील्ड जरूरी हैं।");
+      // Require at least one field
+      if (!formState.Morning && !formState.Evening) {
+        throw new Error("दोनों फील्ड खाली हैं। कम से कम एक फील्ड भरें।");
       }
 
       const date = new Date(formState.date);
       const dataWriteDir = `${dataCollName}/${date.getFullYear()}/${
         monthNames[date.getMonth()]
       }/${date.getDate()}`;
-
       const dateRef = ref(database, dataWriteDir);
       const snapshot = await get(dateRef);
+      const existing = snapshot.exists() ? snapshot.val() : {};
 
-      if (snapshot.exists() && formState.isValid !== AuthStatus.PRIME) {
-        throw new Error("डेटा मौजूद है - prime access required");
+      // Prepare only the keys the user has entered
+      const updates = {};
+
+      if (formState.Morning) {
+        if (
+          existing.Morning != null &&
+          formState.isValid !== AuthStatus.PRIME
+        ) {
+          throw new Error(
+            "Morning डेटा पहले से मौजूद है - prime access required"
+          );
+        }
+        updates.Morning = formState.Morning;
       }
 
-      // Reusable function for writing or updating data
-      const handleUpdateData = async () => {
-        await update(dateRef, {
-          Morning: formState.Morning,
-          Evening: formState.Evening,
-        });
+      if (formState.Evening) {
+        if (
+          existing.Evening != null &&
+          formState.isValid !== AuthStatus.PRIME
+        ) {
+          throw new Error(
+            "Evening डेटा पहले से मौजूद है - prime access required"
+          );
+        }
+        updates.Evening = formState.Evening;
+      }
+
+      // Apply the update (or save)
+      const performUpdate = async () => {
+        await update(dateRef, updates);
         toast.success(
           snapshot.exists()
             ? "Data updated successfully!"
             : "Data saved successfully!"
         );
-
-        // Clear form state after success
         setFormState((prev) => ({
           ...prev,
           Morning: "",
@@ -191,16 +212,14 @@ const App = () => {
         }));
       };
 
-      if (snapshot.exists()) {
+      // If data already existed, and user is prime, confirm before updating
+      if (snapshot.exists() && formState.isValid === AuthStatus.PRIME) {
         confirmAlert({
-          title: "Confirm Update",
+          title: "Confirm Partial Update",
           message:
-            "Data already exists for this date. Do you want to update it?",
+            "कुछ डेटा पहले से मौजूद है—क्या आप इसे अपडेट करना चाहते हैं?",
           buttons: [
-            {
-              label: "Yes",
-              onClick: handleUpdateData,
-            },
+            { label: "Yes", onClick: performUpdate },
             {
               label: "No",
               onClick: () => toast.info("Update canceled by user."),
@@ -208,7 +227,7 @@ const App = () => {
           ],
         });
       } else {
-        await handleUpdateData();
+        await performUpdate();
       }
     } catch (error) {
       toast.error(error.message);
@@ -310,10 +329,10 @@ const App = () => {
             <li key={item.date}>
               <strong>Date:</strong> {item.date}-{monthNames[selectedMonth]} -{" "}
               <strong>Total:</strong>
-              {Number(item.Evening) + Number(item.Morning)}L
+              {Number(item.Evening ?? 0) + Number(item.Morning ?? 0)}L
               <br />
-              <strong>Morning:</strong> {item.Morning}L -
-              <strong>Evening:</strong> {item.Evening}L
+              <strong>Morning:</strong> {item.Morning ?? 0}L -
+              <strong>Evening:</strong> {item.Evening ?? 0}L
             </li>
           ))}
         </ul>
