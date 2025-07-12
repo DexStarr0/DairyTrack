@@ -326,7 +326,7 @@ const App = () => {
           </strong>{" "}
           {totalMilkProduction} L
         </div>
-        <ul>
+        {/* <ul>
           {data.map((item) => (
             <li key={item.date}>
               <strong>Date:</strong> {item.date}-{monthNames[selectedMonth]} -{" "}
@@ -337,6 +337,47 @@ const App = () => {
               <strong>Evening:</strong> {item.Evening ?? 0}L
             </li>
           ))}
+        </ul> */}
+        <ul>
+          {data.map((item) => {
+            // Prepare displays
+            const morningNum = Number(item.Morning);
+            const eveningNum = Number(item.Evening);
+
+            const morningDisplay =
+              item.Morning != null && !isNaN(morningNum) ? (
+                `${morningNum}L`
+              ) : (
+                <span style={{ color: "red" }}>NaN</span>
+              );
+
+            const eveningDisplay =
+              item.Evening != null && !isNaN(eveningNum) ? (
+                `${eveningNum}L`
+              ) : (
+                <span style={{ color: "red" }}>NaN</span>
+              );
+
+            const totalNum =
+              !isNaN(morningNum) && !isNaN(eveningNum)
+                ? morningNum + eveningNum
+                : NaN;
+            const totalDisplay = !isNaN(totalNum) ? (
+              `${totalNum}L`
+            ) : (
+              <span style={{ color: "red" }}>NaN</span>
+            );
+
+            return (
+              <li key={item.date}>
+                <strong>Date:</strong> {item.date}-{monthNames[selectedMonth]} –{" "}
+                <strong>Total:</strong> {totalDisplay}
+                <br />
+                <strong>Morning:</strong> {morningDisplay} –{" "}
+                <strong>Evening:</strong> {eveningDisplay}
+              </li>
+            );
+          })}
         </ul>
       </div>
       <ToastContainer />
