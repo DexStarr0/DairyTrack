@@ -64,7 +64,7 @@ const App = () => {
     Morning: "",
     Evening: "",
     date: currentDate,
-    passkey: "",
+    passkey: "Family123",
     isValid: AuthStatus.INVALID,
   });
 
