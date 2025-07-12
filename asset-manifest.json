@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/DairyTrack/static/css/main.54a25ac3.css",
-    "main.js": "/DairyTrack/static/js/main.de20456e.js",
+    "main.css": "/DairyTrack/static/css/main.45cc4c72.css",
+    "main.js": "/DairyTrack/static/js/main.833c9842.js",
     "index.html": "/DairyTrack/index.html",
-    "main.54a25ac3.css.map": "/DairyTrack/static/css/main.54a25ac3.css.map",
-    "main.de20456e.js.map": "/DairyTrack/static/js/main.de20456e.js.map"
+    "main.45cc4c72.css.map": "/DairyTrack/static/css/main.45cc4c72.css.map",
+    "main.833c9842.js.map": "/DairyTrack/static/js/main.833c9842.js.map"
   },
   "entrypoints": [
-    "static/css/main.54a25ac3.css",
-    "static/js/main.de20456e.js"
+    "static/css/main.45cc4c72.css",
+    "static/js/main.833c9842.js"
   ]
 }
