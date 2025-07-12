@@ -249,7 +249,7 @@ const App = () => {
         {!isAuthenticated ? (
           <>
             <div className="input-field">
-              <i className="bi bi-shield-lock-fill"></i>
+              <i className="bi bi-shield-lock-fill "></i>
               <input
                 name="passkey"
                 type="password"
@@ -264,26 +264,28 @@ const App = () => {
           </>
         ) : (
           <>
-            <div className="input-field">
-              <i className="bi bi-droplet-half"></i>
-              <input
-                type="number"
-                name="Morning"
-                value={formState.Morning}
-                placeholder="Morning"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="input-field">
-              <i className="bi bi-droplet-half"></i>
-              <input
-                type="number"
-                name="Evening"
-                value={formState.Evening}
-                placeholder="Evening"
-                onChange={handleChange}
-              />
-            </div>
+            <section className="inputContainer">
+              <div className="input-field">
+                <i class="bi bi-brightness-high"></i>
+                <input
+                  type="number"
+                  name="Morning"
+                  value={formState.Morning}
+                  placeholder="सुबह"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="input-field">
+                <i class="bi bi-moon-stars"></i>
+                <input
+                  type="number"
+                  name="Evening"
+                  value={formState.Evening}
+                  placeholder="शाम"
+                  onChange={handleChange}
+                />
+              </div>
+            </section>
             {formState.isValid === AuthStatus.PRIME && (
               <div className="input-field">
                 <i className="bi bi-calendar-event"></i>
