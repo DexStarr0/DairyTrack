@@ -236,6 +236,12 @@ const App = () => {
     }
   };
 
+  const formatMilk = (value) => {
+    return Number(value || 0)
+      .toFixed(2)
+      .replace(/\.?0+$/, "");
+  };
+
   const isAuthenticated = formState.isValid !== AuthStatus.INVALID;
 
   return (
@@ -324,7 +330,7 @@ const App = () => {
             Total Milk Produced
             {/* for {monthNames[selectedMonth]} */} :-
           </strong>{" "}
-          {totalMilkProduction} L
+          {formatMilk(totalMilkProduction)} L
         </div>
         {/* <ul>
           {data.map((item) => (
