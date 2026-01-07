@@ -30,10 +30,16 @@ const monthNames = [
 
 const App = () => {
   const dataCollName = "Dairy";
+  const currentYear = new Date().getFullYear();
+
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
+  const [selectedYear, setSelectedYear] = useState(currentYear);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Memoize date-related values
+  const selectedMonthYearLabel = useMemo(() => {
+    return `${monthNames[selectedMonth]} ${selectedYear}`;
+  }, [selectedMonth, selectedYear]);
 
   const { currentDate, currentDate_name, datafetchDir } = useMemo(() => {
     const currDate = new Date();
@@ -56,9 +62,10 @@ const App = () => {
     return {
       currentDate: formDate,
       currentDate_name: todayDateName,
-      datafetchDir: `${dataCollName}/${formDateYear}/${selectedMonthName}`,
+      datafetchDir: `${dataCollName}/${selectedYear}/${selectedMonthName}`,
     };
-  }, [selectedMonth]); // Only re-calculate when selectedMonth changes
+  }, [selectedMonth, selectedYear]);
+  // Only re-calculate when selectedMonth changes
   // console.log(currentDate);
   const [formState, setFormState] = useState({
     Morning: "",
@@ -145,6 +152,10 @@ const App = () => {
 
   const handleChange = ({ target: { name, value } }) => {
     setFormState((prev) => ({ ...prev, [name]: value }));
+  };
+  const years = Array.from({ length: 10 }, (_, i) => currentYear - 5 + i);
+  const handleYearChange = (event) => {
+    setSelectedYear(Number(event.target.value));
   };
 
   const handleMonthChange = (event) => {
@@ -323,13 +334,19 @@ const App = () => {
                 </option>
               ))}
             </select>
+
+            <select value={selectedYear} onChange={handleYearChange}>
+              {years.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
           </span>
         </section>
+
         <div>
-          <strong>
-            Total Milk Produced
-            {/* for {monthNames[selectedMonth]} */} :-
-          </strong>{" "}
+          <strong>Total Milk {selectedMonthYearLabel} :- </strong>
           {formatMilk(totalMilkProduction)} L
         </div>
         {/* <ul>
