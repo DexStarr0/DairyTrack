@@ -14,6 +14,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+  color: var(--text-color);
+  font-family: "Rocher";
   /* justify-content: center; */
 }
 input,
@@ -24,8 +28,7 @@ textarea {
 .container {
   position: relative;
   background-color: #fff;
-  background-image: url("../src/images/2151589944.jpg");
-  min-height: 100vh;
+  /* background-image: url("../src/images/2151589944.jpg"); */
 }
 
 .form {
@@ -33,7 +36,7 @@ textarea {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0rem 1rem;
+  /* padding: 0rem 1rem; */
   transition: all 0.2s 0.7s;
   overflow: hidden;
 }

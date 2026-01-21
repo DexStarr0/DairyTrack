@@ -24,13 +24,6 @@
   --pink-shadow: #ffe3e2;
 }
 
-body {
-  font-family: "Segoe UI", system-ui, sans-serif;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-  color: var(--text-color);
-  min-height: 100vh;
-  font-family: "Rocher";
-}
 /* @font-palette-values --Grays {
   font-family: Rocher;
   base-palette: 9;
@@ -137,6 +130,10 @@ button.learn-more:active::before {
     0 0 0 0 var(--pink-shadow);
   transform: translate3d(0, 0, -1em);
 }
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
 
 /* Card */
 .card {
@@ -160,7 +157,7 @@ button.learn-more:active::before {
   border-bottom: 3px solid var(--primary-color);
   margin: 0;
   padding: 15px 20px;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 600;
 }
 

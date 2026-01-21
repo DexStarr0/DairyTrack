@@ -347,7 +347,6 @@ const App = () => {
         <div className="table-wrapper">
           <div className="card">
             <h2 className="card-title">
-              {" "}
               <strong>Total Milk {selectedMonthYearLabel} :- </strong>
               {formatMilk(totalMilkProduction)} L
             </h2>
