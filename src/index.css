@@ -24,6 +24,8 @@ textarea {
 .container {
   position: relative;
   background-color: #fff;
+  background-image: url("../src/images/2151589944.jpg");
+  min-height: 100vh;
 }
 
 .form {
