@@ -53,6 +53,8 @@ textarea {
   font-size: 15px;
   line-height: 1.5;
   color: #666666;
+  background-color: #f0f5ff;
+  border-color: #adc6ff;
 }
 
 .input-field i {
@@ -84,7 +86,7 @@ textarea {
   margin: 10px 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px; /* Optional: space between grid items */
+  gap: 20px; /* Optional: space between grid items */
 }
 
 /* Morning specific styles */
@@ -149,7 +151,9 @@ li {
   color: #2b3a3a; /* Deep gray-green for text */
   position: relative;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 li:hover {

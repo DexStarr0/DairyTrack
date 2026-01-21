@@ -56,7 +56,7 @@ const App = () => {
     const formDateYear = currDate.getFullYear();
     const formDate = `${currentYear}-${String(currentMonth + 1).padStart(
       2,
-      "0"
+      "0",
     )}-${currentDay}`;
 
     return {
@@ -141,7 +141,7 @@ const App = () => {
       },
       (error) => {
         toast.error("डेटा प्राप्त करने में त्रुटि है।");
-      }
+      },
     );
   }, [datafetchDir]);
 
@@ -189,7 +189,7 @@ const App = () => {
           formState.isValid !== AuthStatus.PRIME
         ) {
           throw new Error(
-            "Morning डेटा पहले से मौजूद है - prime access required"
+            "Morning डेटा पहले से मौजूद है - prime access required",
           );
         }
         updates.Morning = formState.Morning;
@@ -201,7 +201,7 @@ const App = () => {
           formState.isValid !== AuthStatus.PRIME
         ) {
           throw new Error(
-            "Evening डेटा पहले से मौजूद है - prime access required"
+            "Evening डेटा पहले से मौजूद है - prime access required",
           );
         }
         updates.Evening = formState.Evening;
@@ -213,7 +213,7 @@ const App = () => {
         toast.success(
           snapshot.exists()
             ? "Data updated successfully!"
-            : "Data saved successfully!"
+            : "Data saved successfully!",
         );
         setFormState((prev) => ({
           ...prev,
@@ -283,22 +283,22 @@ const App = () => {
           <>
             <section className="inputContainer">
               <div className="input-field">
-                <i class="bi bi-brightness-high"></i>
+                <i className="bi bi-brightness-high"></i>
                 <input
                   type="number"
                   name="Morning"
                   value={formState.Morning}
-                  placeholder="सुबह"
+                  placeholder="Morning"
                   onChange={handleChange}
                 />
               </div>
               <div className="input-field">
-                <i class="bi bi-moon-stars"></i>
+                <i className="bi bi-moon-stars"></i>
                 <input
                   type="number"
                   name="Evening"
                   value={formState.Evening}
-                  placeholder="शाम"
+                  placeholder="Evening"
                   onChange={handleChange}
                 />
               </div>
@@ -344,64 +344,71 @@ const App = () => {
             </select>
           </span>
         </section>
+        <div className="table-wrapper">
+          <div className="card">
+            <h2 className="card-title">
+              {" "}
+              <strong>Total Milk {selectedMonthYearLabel} :- </strong>
+              {formatMilk(totalMilkProduction)} L
+            </h2>
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Date</th>
+                  <th>Morning</th>
+                  <th>Evening</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
 
-        <div>
-          <strong>Total Milk {selectedMonthYearLabel} :- </strong>
-          {formatMilk(totalMilkProduction)} L
+              <tbody>
+                {data.map((item, index) => {
+                  const morningNum = Number(item.Morning);
+                  const eveningNum = Number(item.Evening);
+                  const totalNum =
+                    !isNaN(morningNum) && !isNaN(eveningNum)
+                      ? morningNum + eveningNum
+                      : NaN;
+
+                  return (
+                    <tr key={item.date}>
+                      <td className="row-title">{data.length - index}</td>
+
+                      <td className="row-title">
+                        {item.date} {monthNames[selectedMonth]}
+                      </td>
+
+                      <td className="row-detail">
+                        {item.Morning != null && !isNaN(morningNum) ? (
+                          `${morningNum} L`
+                        ) : (
+                          <span className="invalid-value">NaN</span>
+                        )}
+                      </td>
+
+                      <td className="row-detail">
+                        {item.Evening != null && !isNaN(eveningNum) ? (
+                          `${eveningNum} L`
+                        ) : (
+                          <span className="invalid-value">NaN</span>
+                        )}
+                      </td>
+
+                      <td className="row-detail">
+                        {!isNaN(totalNum) ? (
+                          `${totalNum} L`
+                        ) : (
+                          <span className="invalid-value">NaN</span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
-        {/* <ul>
-          {data.map((item) => (
-            <li key={item.date}>
-              <strong>Date:</strong> {item.date}-{monthNames[selectedMonth]} -{" "}
-              <strong>Total:</strong>
-              {Number(item.Evening ?? 0) + Number(item.Morning ?? 0)}L
-              <br />
-              <strong>Morning:</strong> {item.Morning ?? 0}L -
-              <strong>Evening:</strong> {item.Evening ?? 0}L
-            </li>
-          ))}
-        </ul> */}
-        <ul>
-          {data.map((item) => {
-            // Prepare displays
-            const morningNum = Number(item.Morning);
-            const eveningNum = Number(item.Evening);
-
-            const morningDisplay =
-              item.Morning != null && !isNaN(morningNum) ? (
-                `${morningNum}L`
-              ) : (
-                <span style={{ color: "red" }}>NaN</span>
-              );
-
-            const eveningDisplay =
-              item.Evening != null && !isNaN(eveningNum) ? (
-                `${eveningNum}L`
-              ) : (
-                <span style={{ color: "red" }}>NaN</span>
-              );
-
-            const totalNum =
-              !isNaN(morningNum) && !isNaN(eveningNum)
-                ? morningNum + eveningNum
-                : NaN;
-            const totalDisplay = !isNaN(totalNum) ? (
-              `${totalNum}L`
-            ) : (
-              <span style={{ color: "red" }}>NaN</span>
-            );
-
-            return (
-              <li key={item.date}>
-                <strong>Date:</strong> {item.date}-{monthNames[selectedMonth]} –{" "}
-                <strong>Total:</strong> {totalDisplay}
-                <br />
-                <strong>Morning:</strong> {morningDisplay} –{" "}
-                <strong>Evening:</strong> {eveningDisplay}
-              </li>
-            );
-          })}
-        </ul>
       </div>
       <ToastContainer />
     </div>
