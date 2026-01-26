@@ -6,6 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { confirmAlert } from "react-confirm-alert";
 import "react-toastify/dist/ReactToastify.css";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import cowCartoon from "./images/cowCartoon.png";
 
 const AuthStatus = {
   PRIME: "prime",
@@ -53,7 +54,7 @@ const App = () => {
 
     // For form date and data directory (uses selectedMonth)
     const selectedMonthName = monthNames[selectedMonth];
-    const formDateYear = currDate.getFullYear();
+    // const formDateYear = currDate.getFullYear();
     const formDate = `${currentYear}-${String(currentMonth + 1).padStart(
       2,
       "0",
@@ -114,7 +115,7 @@ const App = () => {
         if (authState === AuthStatus.PRIME) {
           toast.success("Hello Boss 😎");
         } else if (authState === AuthStatus.NON_PRIME) {
-          toast.success("Hello family 💖");
+          toast.success("नमस्ते 🙏💖");
         } else {
           toast.error("पासवर्ड गलत है।");
         }
@@ -258,11 +259,10 @@ const App = () => {
   return (
     <div className="container">
       <div className="form">
-        <h1>Daily Dairy Tracker</h1>
-        <div>
-          <strong>Date:</strong> {currentDate_name}
+        <div className="logo">
+          <img src={cowCartoon} alt="Cow" />
         </div>
-
+        {/* <h1>Dairy Tracker</h1> */}
         {!isAuthenticated ? (
           <>
             <div className="input-field">
@@ -324,6 +324,9 @@ const App = () => {
             </button>
           </>
         )}
+        <div>
+          <strong>Date :</strong> {currentDate_name}
+        </div>
         <section className="records">
           Records -
           <span>
@@ -375,7 +378,8 @@ const App = () => {
                       <td className="row-title">{data.length - index}</td>
 
                       <td className="row-title">
-                        {item.date} {monthNames[selectedMonth]}
+                        {item.date}
+                        <br /> {monthNames[selectedMonth]}
                       </td>
 
                       <td className="row-detail">

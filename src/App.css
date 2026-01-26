@@ -51,10 +51,23 @@
   font-palette: --Mint;
 }
 @import url("https://fonts.googleapis.com/css?family=Rubik:700&display=swap");
-
+*,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.25rem 0 -1.75rem 0;
+  z-index: 1;
+}
+
+.logo img {
+  width: 9.375rem;
+  height: auto;
+  object-fit: contain;
 }
 
 button {
@@ -161,12 +174,6 @@ button.learn-more:active::before {
   font-weight: 600;
 }
 
-/* Tabs */
-.tabs {
-  display: flex;
-  border-bottom: 1px solid var(--border-color);
-}
-
 /* Table */
 .data-table {
   width: 100%;
@@ -176,7 +183,7 @@ button.learn-more:active::before {
 
 .data-table th,
 .data-table td {
-  padding: 14px 16px;
+  padding: 1px 1px;
   text-align: left;
   border-bottom: 1px solid #eee;
 }
@@ -206,19 +213,24 @@ button.learn-more:active::before {
   color: #555;
   font-size: 0.9em;
 }
-
-/* Responsive */
+.invalid-value {
+  color: red;
+}
 @media (max-width: 768px) {
-  body {
-    padding: 10px;
-  }
-
-  .tab {
+  .data-table {
     font-size: 0.9rem;
   }
 
+  /* All columns */
   .data-table th,
   .data-table td {
-    padding: 12px;
+    padding: 6px 6px;
+    text-align: center;
   }
+
+  /* Override Date column */
+  /* .data-table th:nth-child(2),
+  .data-table td:nth-child(2) {
+    padding: 10px 16px;
+  } */
 }

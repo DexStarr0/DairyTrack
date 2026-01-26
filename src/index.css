@@ -40,7 +40,12 @@ textarea {
   transition: all 0.2s 0.7s;
   overflow: hidden;
 }
-
+.form h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 0;
+}
 .input-field {
   position: relative;
   max-width: 380px;
