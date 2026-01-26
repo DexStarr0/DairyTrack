@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/DairyTrack/static/css/main.a8848aff.css",
-    "main.js": "/DairyTrack/static/js/main.b350dca5.js",
+    "main.css": "/DairyTrack/static/css/main.af244b52.css",
+    "main.js": "/DairyTrack/static/js/main.2a12d41e.js",
+    "static/media/cowCartoon.png": "/DairyTrack/static/media/cowCartoon.89b52407267ebc6b254c.png",
     "index.html": "/DairyTrack/index.html",
-    "main.a8848aff.css.map": "/DairyTrack/static/css/main.a8848aff.css.map",
-    "main.b350dca5.js.map": "/DairyTrack/static/js/main.b350dca5.js.map"
+    "main.af244b52.css.map": "/DairyTrack/static/css/main.af244b52.css.map",
+    "main.2a12d41e.js.map": "/DairyTrack/static/js/main.2a12d41e.js.map"
   },
   "entrypoints": [
-    "static/css/main.a8848aff.css",
-    "static/js/main.b350dca5.js"
+    "static/css/main.af244b52.css",
+    "static/js/main.2a12d41e.js"
   ]
 }
