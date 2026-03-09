@@ -27,6 +27,7 @@ textarea {
 
 .container {
   position: relative;
+  width: 100vw;
   background-color: #fff;
   /* background-image: url("../src/images/2151589944.jpg"); */
 }
